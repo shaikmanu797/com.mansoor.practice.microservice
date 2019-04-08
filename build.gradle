@@ -1,3 +1,42 @@
-group 'com.mansoor.practice'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'idea'
+    id 'scala'
+}
 
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceSets {
+    main {
+        scala {
+            srcDirs = ['src/main/scala']
+        }
+    }
+    test {
+        scala {
+            srcDirs = ['src/test/scala']
+        }
+    }
+}
+
+dependencies {
+    compile group: 'org.scala-lang', name: 'scala-library', version: scalaFullVersion
+    compile group: 'com.github.scopt', name: 'scopt_'+scalaBaseVersion, version: scoptVersion
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    compile group: 'com.typesafe.akka', name: 'akka-http_'+scalaBaseVersion,   version: akkaHttpVersion
+    compile group: 'com.typesafe.akka', name: 'akka-stream_'+scalaBaseVersion, version: akkaStreamVersion
+
+    testCompile group: 'org.scalatest', name: 'scalatest_'+scalaBaseVersion, version: scalaTestVersion
+}
+
+task runApp(type: JavaExec, group: 'practice') {
+    doFirst {
+        println("#"*10 + "Starting the application".concat("."*25))
+    }
+    classpath = sourceSets.main.runtimeClasspath
+    main = mainClassFile
+//    jvmArgs ''
+    args '--port', '8080', '--run'
+}
