@@ -35,9 +35,11 @@ object Rest extends App {
 
   OParser.parse(parser, args, CmdArgs()) match {
     case Some(config) =>
-      val bindingFuture = Http().bindAndHandle(Api.routes, config.hostname, config.port)
+      hostname = config.hostname
+      port = config.port
+      val bindingFuture = Http().bindAndHandle(Api.routes, hostname, port)
 
-      log.info(s"Server online at http://${config.hostname}:${config.port}/")
+      log.info(s"Server online at http://$hostname:$port/")
     case _ =>
   }
 }

@@ -27,6 +27,8 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
     compile group: 'com.typesafe.akka', name: 'akka-http_'+scalaBaseVersion,   version: akkaHttpVersion
     compile group: 'com.typesafe.akka', name: 'akka-stream_'+scalaBaseVersion, version: akkaStreamVersion
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: javaxWsVersion
+    compile group: 'com.github.swagger-akka-http', name: 'swagger-akka-http_'+scalaBaseVersion, version: swaggerAkkaVersion
 
     testCompile group: 'org.scalatest', name: 'scalatest_'+scalaBaseVersion, version: scalaTestVersion
 }

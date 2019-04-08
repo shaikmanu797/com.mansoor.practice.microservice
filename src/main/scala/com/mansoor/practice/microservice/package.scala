@@ -12,4 +12,7 @@ package object microservice {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   // needed for the future flatMap/onComplete in the end
   implicit val executionContext: ExecutionContext = system.dispatcher
+
+  var hostname: String = _
+  var port: Int = _
 }
