@@ -1,16 +1,58 @@
-<configuration debug="true">
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+<configuration>
+    <appender name="console-debug" class="ch.qos.logback.core.ConsoleAppender">
         <!-- On Windows machines setting withJansi to true enables ANSI
              color code interpretation by the Jansi library. This requires
              org.fusesource.jansi:jansi:1.8 on the class path.  Note that
              Unix-based operating systems such as Linux and Mac OS X
              support ANSI color codes by default. -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
         <withJansi>true</withJansi>
         <encoder>
-            <pattern>[%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n</pattern>
+            <pattern>%magenta([%t] %-5p) %d %c - %msg %n</pattern>
         </encoder>
     </appender>
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
+    <appender name="console-info" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>%green([%t] %-5p) %d %c - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="console-warn" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>%yellow([%t] %-5p) %d %c - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="console-error" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>%boldRed([%t] %-5p) %d %c - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="console-debug" />
+        <appender-ref ref="console-info" />
+        <appender-ref ref="console-warn" />
+        <appender-ref ref="console-error" />
     </root>
 </configuration>
