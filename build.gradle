@@ -24,16 +24,17 @@ sourceSets {
 dependencies {
     compile group: 'org.scala-lang', name: 'scala-library', version: scalaFullVersion
     compile group: 'com.github.scopt', name: 'scopt_'+scalaBaseVersion, version: scoptVersion
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
 
     testCompile group: 'org.scalatest', name: 'scalatest_'+scalaBaseVersion, version: scalaTestVersion
 }
 
 task runApp(type: JavaExec, group: 'practice') {
     doFirst {
-        println("Starting the application".concat("."*25))
+        println("#"*10 + "Starting the application".concat("."*25))
     }
     classpath = sourceSets.main.runtimeClasspath
     main = mainClassFile
 //    jvmArgs ''
-//    args ''
+    args '--port', '8080', '--run'
 }
