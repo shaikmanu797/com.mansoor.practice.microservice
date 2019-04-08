@@ -1,5 +1,7 @@
 package com.mansoor.practice.microservice
 
+import akka.http.scaladsl.Http
+import com.mansoor.practice.microservice.server.Api
 import com.mansoor.practice.microservice.utils.CmdArgs
 import scopt.OParser
 
@@ -33,7 +35,9 @@ object Rest extends App {
 
   OParser.parse(parser, args, CmdArgs()) match {
     case Some(config) =>
-      log.info("gg")
+      val bindingFuture = Http().bindAndHandle(Api.routes, config.hostname, config.port)
+
+      log.info(s"Server online at http://${config.hostname}:${config.port}/")
     case _ =>
   }
 }

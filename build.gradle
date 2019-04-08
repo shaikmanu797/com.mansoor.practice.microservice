@@ -25,6 +25,8 @@ dependencies {
     compile group: 'org.scala-lang', name: 'scala-library', version: scalaFullVersion
     compile group: 'com.github.scopt', name: 'scopt_'+scalaBaseVersion, version: scoptVersion
     compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    compile group: 'com.typesafe.akka', name: 'akka-http_'+scalaBaseVersion,   version: akkaHttpVersion
+    compile group: 'com.typesafe.akka', name: 'akka-stream_'+scalaBaseVersion, version: akkaStreamVersion
 
     testCompile group: 'org.scalatest', name: 'scalatest_'+scalaBaseVersion, version: scalaTestVersion
 }
